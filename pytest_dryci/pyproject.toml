@@ -1,0 +1,42 @@
+[project]
+name = "pytest-dryci"
+version = "0.1.0"
+description = "Test caching plugin for pytest"
+authors = [{ name = "David Shlemayev", email = "david.shlemayev@gmail.com" }]
+license = "MIT"
+readme = "../README.md"
+requires-python = ">=3.8"
+dependencies = []
+
+classifiers = [
+    "Framework :: Pytest",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Testing",
+    "Development Status :: 4 - Beta",
+]
+
+[project.urls]
+Homepage = "https://github.com/Wazzaps/dryci"
+Repository = "https://github.com/Wazzaps/dryci.git"
+Issues = "https://github.com/Wazzaps/dryci/issues"
+
+[tool.hatch.build.hooks.custom]
+
+[tool.hatch.build.targets.wheel]
+packages = ["pytest_dryci"]
+
+[project.entry-points.pytest11]
+"pytest-dryci" = "pytest_dryci.plugin"
+
+[tool.uv]
+dev-dependencies = ["pytest>=8.3.3", "ruff>=0.6.7"]
+
+[tool.uv.workspace]
+members = ["example_project"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

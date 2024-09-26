@@ -1,0 +1,25 @@
+[project]
+name = "example-project"
+version = "0.1.0"
+description = ""
+authors = [{ name = "David Shlemayev", email = "david.shlemayev@gmail.com" }]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = ["pytest-dryci"]
+
+[tool.hatch.build.targets.sdist]
+packages = ["example_service"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["example_service"]
+
+[tool.uv]
+dev-dependencies = ["pytest>=8.3.3", "ruff>=0.6.7"]
+
+[tool.uv.sources]
+pytest-dryci = { workspace = true }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

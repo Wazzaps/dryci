@@ -1,0 +1,38 @@
+# See https://github.com/Wazzaps/repo_dagger for more information
+
+inputs:
+  - "tests/**/test_*.py"
+
+# These files will force a cache invalidation if changed
+global_deps:
+  # Any change to package dependencies invalidates the cache
+  # - "poetry.lock"  # Uncomment if using Poetry
+  # - "uv.lock"      # Uncomment if using uv
+  - "pyproject.toml"
+
+# Python packages that are part of the repo
+root_python_packages:
+  - "example_service"
+  - "tests"
+
+# Rules for calculating file dependencies
+path_rules:
+  "tests/**/test_*.py":
+    visit_grand_siblings:
+      - "conftest.py"
+      - "__init__.py"
+
+  "**/*.py":
+    visit_imported_python_modules: true
+    visit_grand_siblings:
+      - "__init__.py"
+    regex_rules:
+      # Matches expressions like:
+      #   Path(__file__).parent / "data_file.txt"
+      "Path\\(__file__\\).parent / \"([^\"]+)\"":
+        visit_siblings: "$1"
+
+      # (Add any custom patterns for in-repo data file opening you use)
+
+  # Add any file-specific rules you may have.
+  # See the `example_config.yaml` file in repo_dagger for more examples.
