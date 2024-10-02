@@ -1,6 +1,6 @@
 [project]
 name = "pytest-dryci"
-version = "0.1.0"
+version = "0.1.1"
 description = "Test caching plugin for pytest"
 authors = [{ name = "David Shlemayev", email = "david.shlemayev@gmail.com" }]
 license = "MIT"
@@ -32,7 +32,7 @@ packages = ["pytest_dryci"]
 "pytest-dryci" = "pytest_dryci.plugin"
 
 [tool.uv]
-dev-dependencies = ["pytest>=8.3.3", "ruff>=0.6.7"]
+dev-dependencies = ["pytest>=8.3.3", "ruff>=0.6.7", "twine>=5.1.1"]
 
 [tool.uv.workspace]
 members = ["example_project"]
